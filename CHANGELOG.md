@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.1
+
+- Security: the Claude Code backend pre-approved `Read` for every path, so the agent could open
+  files outside the node's folder. `Read` is now limited to the pack's `workspace/` folder.
+- Docs: corrected the description of the Codex sandbox (read-only, but it can read local files).
+
 ## 0.1.0
 
 First public release.

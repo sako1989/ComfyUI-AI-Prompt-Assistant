@@ -36,7 +36,7 @@ def test_claude_command_new_session():
     assert argv[:2] == ["claude.exe", "-p"]
     assert "--output-format" in argv and argv[argv.index("--output-format") + 1] == "stream-json"
     assert argv[argv.index("--tools") + 1] == "Read,WebSearch,WebFetch"
-    assert argv[argv.index("--allowedTools") + 1] == "Read,WebSearch,WebFetch"
+    assert argv[argv.index("--allowedTools") + 1] == "WebSearch,WebFetch"  # never Read: that would allow any path
     assert argv[argv.index("--model") + 1] == "opus"
     assert argv[argv.index("--effort") + 1] == "high"
     assert "--system-prompt" in argv and "--resume" not in argv
@@ -49,6 +49,7 @@ def test_claude_command_resume_and_no_search():
     b = BACKENDS["claude_code"]
     argv = b.build_command("claude", _spec(web_search=False, resume_id="abc-123"))
     assert argv[argv.index("--tools") + 1] == "Read"
+    assert "--allowedTools" not in argv
     assert argv[argv.index("--resume") + 1] == "abc-123"
     assert "--system-prompt" not in argv
     assert "--model" not in argv and "--effort" in argv

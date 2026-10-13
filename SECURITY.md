@@ -14,8 +14,10 @@ Only the latest version on the `main` branch is supported.
 
 - Starts the `claude` or `codex` CLI as a child process of ComfyUI, with your own login.
 - Claude Code is limited to the `Read`, `WebSearch` and `WebFetch` tools, with MCP servers and user
-  settings disabled. Codex runs with a read-only sandbox, approvals set to `never`, and MCP servers
-  disabled. Neither is given shell, edit or write tools by this pack.
+  settings disabled. It has no shell, edit or write tools, and `Read` only works inside this pack's
+  `workspace/` folder.
+- Codex runs with a read-only sandbox, approvals set to `never`, and MCP servers disabled. It cannot
+  modify files, but it can read files and run read-only commands anywhere your account can.
 - Writes reference media to `workspace/runs/`, conversation ids to `workspace/sessions.json`, and
   researched skills to `skills/learned-*/`. The agent itself never writes files; the host process does.
 - Registers three unauthenticated routes on the ComfyUI server: `GET /ai_prompt_assistant/status`,

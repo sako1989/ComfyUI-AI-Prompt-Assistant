@@ -126,10 +126,12 @@ New controls are appended to preserve the widget order of existing workflows. Re
 and reload the browser after updating. Add a skill file and click **Refresh skills list** to see it.
 
 - Claude Code: `claude -p --output-format stream-json --permission-mode dontAsk --tools Read[,WebSearch,WebFetch]
-  --strict-mcp-config --safe-mode --setting-sources "" --json-schema …`. It can only read the
-  reference PNGs written to `workspace/runs/<id>/` and (optionally) use the web. No Bash, no edits.
+  --strict-mcp-config --safe-mode --setting-sources "" --json-schema …`. File reads are limited to
+  this pack's `workspace/` folder, where the reference PNGs are written, and it can (optionally) use
+  the web. No Bash, no edits.
 - Codex: `codex [--search] exec --json -c sandbox_mode="read-only" -c approval_policy="never"
-  -c mcp_servers={} -m <model> -i <frames> --output-schema …`.
+  -c mcp_servers={} -m <model> -i <frames> --output-schema …`. The read-only sandbox blocks writes,
+  but Codex can still read files and run read-only commands anywhere your account can.
 - The prompt is fed via stdin; the process is killed on ComfyUI interrupt, on timeout, or via the
   Stop button. Old run folders are pruned (`keep_runs`).
 
@@ -145,6 +147,9 @@ and reload the browser after updating. Add a skill file and click **Refresh skil
 - **HTTP routes:** `/ai_prompt_assistant/status`, `/cancel` and `/skills` have no authentication of
   their own, like the rest of ComfyUI's API. `status` returns the resolved CLI paths. Do not expose
   your ComfyUI port to an untrusted network.
+- **Codex can read local files.** Its sandbox is read-only, not read-nothing. With web search on, a
+  hostile web page could try to talk the agent into reading a file and leaking it through a web
+  request. Use the Claude Code backend, or turn `web_search` off, when you work near sensitive files.
 - **Logs can contain local paths** (the run folder and the files the agent read). Check a log or
   screenshot before sharing it.
 - **`extra_claude_args` / `extra_codex_args`** are appended to the command line as-is and can widen

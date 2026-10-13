@@ -1,7 +1,7 @@
 [project]
 name = "comfyui-ai-prompt-assistant"
 description = "Prompt-engineering assistant node that runs your own Claude Code or Codex CLI in the background (subscription auth, no API key). Text + image + video in, polished prompt out, with a live thinking log."
-version = "0.1.0"
+version = "0.1.1"
 license = { file = "LICENSE" }
 readme = "README.md"
 requires-python = ">=3.10"

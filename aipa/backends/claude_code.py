@@ -26,9 +26,12 @@ class ClaudeCodeBackend(Backend):
 
     def build_command(self, exe: str, spec: RunSpec) -> list[str]:
         tools = ["Read"]
+        # Read is deliberately not pre-approved: a blanket allow rule lets it open any file,
+        # while dontAsk without one only permits reads inside the cwd (workspace/) and --add-dir.
+        allowed: list[str] = []
         if spec.web_search:
             tools += ["WebSearch", "WebFetch"]
-        tools_csv = ",".join(tools)
+            allowed += ["WebSearch", "WebFetch"]
         argv = [
             exe,
             "-p",
@@ -38,10 +41,11 @@ class ClaudeCodeBackend(Backend):
             "--strict-mcp-config",
             "--safe-mode",
             "--setting-sources", "",
-            "--tools", tools_csv,
-            "--allowedTools", tools_csv,
+            "--tools", ",".join(tools),
             "--add-dir", str(spec.run_dir),
         ]
+        if allowed:
+            argv += ["--allowedTools", ",".join(allowed)]
         if spec.resume_id:
             argv += ["--resume", spec.resume_id]
         else:
