@@ -1,0 +1,29 @@
+# Runtime data: reference media, CLI run folders, session ids
+workspace/
+
+# Local overrides (may contain machine-specific paths)
+config.json
+
+# Skills researched on this machine; share one deliberately by renaming it
+skills/learned-*/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Editors, OS, agents
+.vscode/
+.idea/
+.claude/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Secrets and scratch
+.env
+.env.*
+*.tmp
+*.log

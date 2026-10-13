@@ -1,0 +1,18 @@
+[project]
+name = "comfyui-ai-prompt-assistant"
+description = "Prompt-engineering assistant node that runs your own Claude Code or Codex CLI in the background (subscription auth, no API key). Text + image + video in, polished prompt out, with a live thinking log."
+version = "0.1.0"
+license = { file = "LICENSE" }
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.urls]
+Repository = "https://github.com/sako1989/ComfyUI-AI-Prompt-Assistant"
+"Bug Tracker" = "https://github.com/sako1989/ComfyUI-AI-Prompt-Assistant/issues"
+
+[tool.comfy]
+# Fill in your Comfy Registry publisher id (https://registry.comfy.org) before running `comfy node publish`.
+PublisherId = ""
+DisplayName = "AI Prompt Assistant (Claude Code / Codex)"
+Icon = ""

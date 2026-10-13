@@ -1,0 +1,8 @@
+{
+  "claude_path": "C:/Users/you/.local/bin/claude.exe",
+  "codex_path": "C:/Users/you/AppData/Local/Programs/OpenAI/Codex/bin/codex.exe",
+  "keep_runs": 20,
+  "strip_api_keys": true,
+  "extra_claude_args": [],
+  "extra_codex_args": []
+}
